@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.0">
-<title>my_ros_utils API documentation</title>
-<meta name="description" content="A set of utility functions to convert back and forth ROS messages related to the vision stack, and handy Python datatypes …">
+<title>my_ros_utils.bag_conversion API documentation</title>
+<meta name="description" content="">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
@@ -22,36 +22,82 @@ hljs.highlightAll();
 <main>
 <article id="content">
 <header>
-<h1 class="title">Package <code>my_ros_utils</code></h1>
+<h1 class="title">Module <code>my_ros_utils.bag_conversion</code></h1>
 </header>
 <section id="section-intro">
-<p>A set of utility functions to convert back and forth ROS messages related to the vision stack, and handy Python datatypes.</p>
-<ul>
-<li><code>image_conversion.py</code>: A set of conversion tools to convert images from the ROS message format to an OpenCV-compatible format. The module relies on NumPy.</li>
-<li><code>cloud_conversions.py</code>: A set of conversion tools to convert point clouds from the ROS message format to the Open3D format. The module relies on <code>ros_numpy</code>, and also the intermediate conversions (from/to ROS or Open3D to/from NumPy) are made available as public methods.</li>
-<li><code>bag_conversion.py</code>: A set of conversion tools to convert audio and video streams from ROS message bags. The tools allow to convert image stream to <code>.mp4</code> video, and audio stream to <code>.mp3</code> or <code>.wav</code> file. Video and audio can be converted into separated files or merged into a single <code>.mp4</code> file. The module relies on OpenCV and the <code>cv_bridge</code> package.</li>
-</ul>
 </section>
 <section>
-<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt><code class="name"><a title="my_ros_utils.bag_conversion" href="bag_conversion.html">my_ros_utils.bag_conversion</a></code></dt>
+<dt id="my_ros_utils.bag_conversion.bag2audio"><code class="name flex">
+<span>def <span class="ident">bag2audio</span></span>(<span>bag_file, audio_topic, audio_info_topic=None, output_dir=None)</span>
+</code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Reads a ROS1 bag file and extracts the audio from a given audio topic.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>bag_file</code></strong> :&ensp;<code>str</code></dt>
+<dd>Path to the bag file.</dd>
+<dt><strong><code>audio_topic</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of the audio topic to extract from the bag. The messages published on this topic must be of type <code>audio_common_msgs/AudioData</code> or <code>audio_common_msgs/AudioDataStamped</code>.</dd>
+<dt><strong><code>audio_info_topic</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Name of the topic to extract info on audio stream. The messages published on this topic must be of type <code>audio_common_msgs/AudioInfo</code>. If not specified, default values in <code>audio_common/audio_capture/launch/capture_wave.launch</code> are used. Defaults to None.</dd>
+<dt><strong><code>output_dir</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Destination directory for output files. If set to <code>None</code>, the output file will be saved in the same directory of the input bag. Defaults to <code>None</code>.</dd>
+</dl></div>
 </dd>
-<dt><code class="name"><a title="my_ros_utils.cloud_conversion" href="cloud_conversion.html">my_ros_utils.cloud_conversion</a></code></dt>
+<dt id="my_ros_utils.bag_conversion.bag2video"><code class="name flex">
+<span>def <span class="ident">bag2video</span></span>(<span>bag_file, image_topic, output_dir=None)</span>
+</code></dt>
 <dd>
-<div class="desc"><p>ROS/Open3D pointcloud converter …</p></div>
+<div class="desc"><p>Reads a ROS1 bag file and extracts the images from a given image topic.
+Adapted from <a href="https://gist.github.com/munzz11/1131f18b4134094a70db4e451040e08f">munzz11 on GitHub Gist</a>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>bag_file</code></strong> :&ensp;<code>str</code></dt>
+<dd>Path to the bag file.</dd>
+<dt><strong><code>image_topic</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of the image topic to extract from the bag. The messages published on this topic must be of type <code>sensor_msgs/Image</code> or <code>sensor_msgs/CompressedImage</code>.</dd>
+<dt><strong><code>output_dir</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Destination directory for output files. If set to <code>None</code>, the output file will be saved in the same directory of the input bag. Defaults to <code>None</code>.</dd>
+</dl></div>
 </dd>
-<dt><code class="name"><a title="my_ros_utils.image_conversion" href="image_conversion.html">my_ros_utils.image_conversion</a></code></dt>
+<dt id="my_ros_utils.bag_conversion.combine_video_audio"><code class="name flex">
+<span>def <span class="ident">combine_video_audio</span></span>(<span>video_file, audio_file, output_file=None)</span>
+</code></dt>
 <dd>
-<div class="desc"><p>ROS to OpenCV image converter …</p></div>
+<div class="desc"><p>Combine video and audio files into a single MP4 file.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>video_file</code></strong> :&ensp;<code>str</code></dt>
+<dd>Path to the video file.</dd>
+<dt><strong><code>audio_file</code></strong> :&ensp;<code>str</code></dt>
+<dd>Path to the audio file.</dd>
+<dt><strong><code>output_file</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Output video file. If set to <code>None</code>, the output file will be saved in the same directory of the input video file. Defaults to None.</dd>
+</dl></div>
+</dd>
+<dt id="my_ros_utils.bag_conversion.parse_audio_format"><code class="name flex">
+<span>def <span class="ident">parse_audio_format</span></span>(<span>format_str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Parse an audio format string (e.g., S16LE) and return:
+- sample width (in bytes)
+- byteorder ('little' or 'big')
+- range of values (min, max)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>format_str</code></strong> :&ensp;<code>str</code></dt>
+<dd>Audio format string. Must start with 'S' or 'U' to indicate signed or unsigned format, respectively. The format string should also include the sample width in bits (e.g., 'S16LE' for signed 16-bit little-endian).</dd>
+</dl>
+<h2 id="return">Return</h2>
+<p>dict: A dictionary containing the sample width, byteorder, and range of values (min, max).</p></div>
 </dd>
 </dl>
-</section>
-<section>
-</section>
-<section>
 </section>
 <section>
 </section>
@@ -61,11 +107,17 @@ hljs.highlightAll();
 <ul></ul>
 </div>
 <ul id="index">
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<li><h3>Super-module</h3>
 <ul>
-<li><code><a title="my_ros_utils.bag_conversion" href="bag_conversion.html">my_ros_utils.bag_conversion</a></code></li>
-<li><code><a title="my_ros_utils.cloud_conversion" href="cloud_conversion.html">my_ros_utils.cloud_conversion</a></code></li>
-<li><code><a title="my_ros_utils.image_conversion" href="image_conversion.html">my_ros_utils.image_conversion</a></code></li>
+<li><code><a title="my_ros_utils" href="index.html">my_ros_utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="my_ros_utils.bag_conversion.bag2audio" href="#my_ros_utils.bag_conversion.bag2audio">bag2audio</a></code></li>
+<li><code><a title="my_ros_utils.bag_conversion.bag2video" href="#my_ros_utils.bag_conversion.bag2video">bag2video</a></code></li>
+<li><code><a title="my_ros_utils.bag_conversion.combine_video_audio" href="#my_ros_utils.bag_conversion.combine_video_audio">combine_video_audio</a></code></li>
+<li><code><a title="my_ros_utils.bag_conversion.parse_audio_format" href="#my_ros_utils.bag_conversion.parse_audio_format">parse_audio_format</a></code></li>
 </ul>
 </li>
 </ul>
