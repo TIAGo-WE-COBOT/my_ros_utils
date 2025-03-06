@@ -10,19 +10,34 @@ Currently supported conversions, sorted by ROS datatype:
 * [`sensor_msgs/PointCloud2`](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/PointCloud2.html)
     - `PointCloud2` msg to `numpy` array and `numpy` array to [`Open3D.geometry.PointCloud`](https://www.open3d.org/docs/release/python_api/open3d.geometry.PointCloud.html)
     - `Open3D.geometry.PointCloud` to `numpy` arrays and `numpy` arrays to  `PointCloud2` msg.
-* [ROS bags](https://wiki.ros.org/rosbag)
+* [ROS bags](https://wiki.ros.org/rosbag) with `sensor_msgs/Image` (or `sensor_msgs/CompressedImage`) and/or [`audio_common_msgs/AudioData`](https://docs.ros.org/en/noetic/api/audio_common_msgs/html/msg/AudioData.html) (or [`audio_common_msgs/AudioStamped`](https://docs.ros.org/en/noetic/api/audio_common_msgs/html/msg/AudioDataStamped.html))
     - `Image` and `CompressedImage` msg from ROS bag to `mp4` file.
-    - `Audio` and `AudioStamped` msg from ROS bag to `mp3` or `wav` file.
+    - `AudioData` and `AudioDataStamped` msg from ROS bag to `mp3` or `wav` file.
     - `mp4` and `mp3`/`wav` files from above processes to `mp4` with audio and video.
 
 # Requirements
 
 Listed in the `requirements.txt` file. Use `pip install -r requirements.txt` to (hopefully) install all the dependencies
 
-- OpenCV
-- Open3d
-- [`ros_numpy`](https://github.com/eric-wieser/ros_numpy) package
-
+* Python dependencies
+    * OpenCV
+    * Open3D
+    ```
+    pip install opencv-python
+    pip install open3d
+    ``` 
+* ROS dependencies
+    - [`cv_bridge`](https://docs.ros.org/en/jade/api/cv_bridge/html/python/)
+    - [`ros_numpy`](https://github.com/eric-wieser/ros_numpy)
+    - [`audio_common`](https://wiki.ros.org/audio_common)
+    ```
+    cd <path/to/your/ws>/src
+    apt-get install cv-bridge
+    git clone https://github.com/eric-wieser/ros_numpy.git
+    apt-get install audio_common
+    cd ..
+    source devel/setup.bash
+    ```
 
 # Documentation
 
