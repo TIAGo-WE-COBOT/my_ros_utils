@@ -11,11 +11,11 @@ Currently supported conversions:
 
 # Requirements
 
-Listed in the `requirements.txt` file. Use `pip install requirements.txt` to (hopefully) install all the dependencies
+Listed in the `requirements.txt` file. Use `pip install -r requirements.txt` to (hopefully) install all the dependencies
 
 - OpenCV
 - Open3d
-- The `ros_numpy` package
+- [`ros_numpy`](https://github.com/eric-wieser/ros_numpy) package
 
 # Use
 
@@ -67,19 +67,3 @@ cp -r docs/vision_utils/. docs
 ```
 rm -r docs/vision_utils/
 ```
-# TODO
-
-- `src`
-  - [ ] Create the `rgbd_processing.py` node, that given one RGB and/or one depth topic(s) checks for the type, receives the images, inpaint them as per the requested method and create a pointcloud (if depth data is available) upon request.
-    - [ ] Create `inpainting.py` object for both RGB and depth
-  - `image_conversion.py`
-    - [x] Output a `numpy.ndarray` in any case
-    - [x] Remove the `depth_in_m` arg, just return depth data as `np.float` in meters
-- `scripts`
-  - [x] Create a `image_converter.py` in `script` to demonstrate a possible usage of the `decoder` module
-    - [ ] The currently hardcoded topic work in simulation (apart from `compressedDepth` one), look for topics on the real robot
-  - [ ] In `cloud_converter.py`, make the topic to subscribe a command-line argument
-- `docs`
-  - [x] Change `image_conversion.py` documentation to Google-style docstrings
-  - [x] Add package documentation with `pdoc3`
-  - [x] Add `ros_numpy` as a dependency
