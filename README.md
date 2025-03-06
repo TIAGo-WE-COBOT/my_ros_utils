@@ -1,6 +1,6 @@
-# ROS vision_utils package
+# ROS `my_ros_utils` package
 
-Provides utility functions to convert from ROS `sensor_msgs` messages to Python datatypes.
+Provides utility functions to convert from ROS messages to Python datatypes.
 Currently supported conversions:
 
 - Image to NumPy array
@@ -19,15 +19,15 @@ Listed in the `requirements.txt` file. Use `pip install -r requirements.txt` to 
 
 # Use
 
-The [documentation](https://tiago-we-cobot.github.io/vision_utils/) of the `vision_utils` module is provided via GitHub Pages. The source files are also available in the `docs` folder.
+The [documentation](https://tiago-we-cobot.github.io/my_ros_utils/) of the `my_ros_utils` module is provided via GitHub Pages. The source files are also available in the `docs` folder.
 
 ## Import
 
 Import in your script using 
 
 ```
-from vision_utils import image_conversion
-from vision_utils import cloud_conversion
+from my_ros_utils import image_conversion
+from my_ros_utils import cloud_conversion
 ```
 
 ## Demo
@@ -36,34 +36,34 @@ After having sourced the environment and connected to the robot (or to its simul
 ### Images
 
 ```
-rosrun vision_utils image_conversion.py
+rosrun my_ros_utils image_conversion.py
 ```
 
 ### Pointcloud
 
 ```
-rosrun vision_utils cloud_converter.py
+rosrun my_ros_utils cloud_converter.py
 ```
 
 # Documentation
 
-Full documentation of the package is available [here](https://tiago-we-cobot.github.io/vision_utils/).
+Full documentation of the package is available [here](https://tiago-we-cobot.github.io/my_ros_utils/).
 
 To (re-)build the package documentation (e.g. if changing the docstrings, or adding new methods/submodules): 
 0. Install [pdoc3](https://pdoc3.github.io/pdoc/) with 
 ```
 pip3 install pdoc3 
 ```
-1. Browse to the root folder of the package (e.g. with `cd ~/tiago_public_ws/src/vision_utils`).
+1. Browse to the root folder of the package (e.g. with `cd ~/tiago_public_ws/src/my_ros_utils`).
 2. Overwrite the existing documentation by running
 ```
-pdoc --html --force --output-dir docs src/vision_utils
+pdoc --html --force --output-dir docs src/my_ros_utils
 ```
 3. Move the `.html` files one folder up (i.e. in `docs/`)
 ```
-cp -r docs/vision_utils/. docs
+cp -r docs/my_ros_utils/. docs
 ```
-4. Optional. Remove the `docs/vision_utils` folder
+4. Optional. Remove the `docs/my_ros_utils` folder
 ```
-rm -r docs/vision_utils/
+rm -r docs/my_ros_utils/
 ```

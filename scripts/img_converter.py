@@ -5,7 +5,7 @@ import numpy as np
 
 import rospy
 from sensor_msgs.msg import Image, CompressedImage
-from vision_utils import image_conversion
+from my_ros_utils import image_conversion
 
 class DecoderTest:
     def __init__(self, sim = True):

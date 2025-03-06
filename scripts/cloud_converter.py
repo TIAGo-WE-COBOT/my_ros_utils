@@ -1,7 +1,7 @@
-#!/home/luca/tiago_public_ws/src/vision_utils/pcd_venv/bin/python3
+#!/home/luca/tiago_public_ws/src/my_ros_utils/pcd_venv/bin/python3
 
 """This script implements a ROS publisher/subscriber node that acquires a ROS PointCloud2 message, converts it into an Open3D PointCloud object, and displays it. The node then converts back the Open3D PointCloud object into a ROS PointCloud2 message and broadcasts the message at 1Hz.
-The above behavior is intended as a demo of the conversion tools implemented in the `vision_utils` package.
+The above behavior is intended as a demo of the conversion tools implemented in the `my_ros_utils` package.
 """
 
 import open3d as o3d
@@ -9,8 +9,8 @@ import open3d as o3d
 import rospy
 from sensor_msgs.msg import PointCloud2
 
-#from vision_utils.decoder import ...
-from vision_utils.cloud_conversion import pointcloud_ros_to_open3d, pointcloud_open3d_to_ros
+#from my_ros_utils.decoder import ...
+from my_ros_utils.cloud_conversion import pointcloud_ros_to_open3d, pointcloud_open3d_to_ros
 
 if __name__ == "__main__":
     rospy.init_node('cloud_converter_test')
