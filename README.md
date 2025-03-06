@@ -50,20 +50,11 @@ rosrun my_ros_utils cloud_converter.py
 Full documentation of the package is available [here](https://tiago-we-cobot.github.io/my_ros_utils/).
 
 To (re-)build the package documentation (e.g. if changing the docstrings, or adding new methods/submodules): 
-0. Install [pdoc3](https://pdoc3.github.io/pdoc/) with 
+* Install [pdoc3](https://pdoc3.github.io/pdoc/) with 
 ```
 pip3 install pdoc3 
 ```
-1. Browse to the root folder of the package (e.g. with `cd ~/tiago_public_ws/src/my_ros_utils`).
-2. Overwrite the existing documentation by running
+* Run the [`update_doc.sh`](./docs/update_doc.sh) script in the `docs/` folder with
 ```
-pdoc --html --force --output-dir docs src/my_ros_utils
-```
-3. Move the `.html` files one folder up (i.e. in `docs/`)
-```
-cp -r docs/my_ros_utils/. docs
-```
-4. Optional. Remove the `docs/my_ros_utils` folder
-```
-rm -r docs/my_ros_utils/
+. <path_to_ws>/src/my_ros_utils/docs/update_docs.sh
 ```
